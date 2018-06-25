@@ -26,4 +26,13 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
   // change the image of the dice
   diceDOM.src = 'asset/image/dice-' + dice + '.png';
   // update the round score if the rolled number was not a 1
+  if(dice !== 1) {
+    // add score
+    roundScore += dice;
+    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+  } else {
+    // next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+  }
 });
+
