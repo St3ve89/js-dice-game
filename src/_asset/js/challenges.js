@@ -21,6 +21,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
       // player lose score
       scores[activePlayer] = 0;
       document.querySelector('#score-' + activePlayer).textContent = '0';
+      nextPlayer();
     } else if(dice !== 1) {
       // add score
       roundScore += dice;
