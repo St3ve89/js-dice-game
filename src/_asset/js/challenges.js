@@ -4,7 +4,7 @@ init();
 // select a #current and change the text on it
 // document.querySelector('#current-' + activePlayer).textContent = dice;
 
-
+var lastDice;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
   if(gamePlaying){
@@ -17,7 +17,11 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     // change the image of the dice
     diceDOM.src = 'asset/image/dice-' + dice + '.png';
     // update the round score if the rolled number was not a 1
-    if(dice !== 1) {
+    if (dice === 6 && lastDice === 6) {
+      // player lose score
+      scores[activePlayer] = 0;
+      document.querySelector('#score-' + activePlayer).textContent = '0';
+    } else if(dice !== 1) {
       // add score
       roundScore += dice;
       document.querySelector('#current-' + activePlayer).textContent = roundScore;
@@ -36,6 +40,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
       // document.querySelector('.dice').style.display = 'hide';
       nextPlayer();
     }
+    lastDice = dice;
   }
 });
 
